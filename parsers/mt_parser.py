@@ -35,5 +35,5 @@ def load_and_parse(file_path):
 
 
 if __name__ == "__main__":
-    parsed_messages = load_and_parse("../data/mt_messages.txt")
+    parsed_messages = load_and_parse("data/mt_msg.txt")
     print(parsed_messages)
