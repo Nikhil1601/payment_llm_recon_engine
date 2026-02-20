@@ -39,12 +39,35 @@ def build_vector_store():
 
 #     return results
 
+# This is distance-based similarity with a threshold  where smaller distance means more similar eg 0.4 - strict, 0.5 - moderate, 0.6 - lenient
+def query_similar(collection, query_text, threshold=0.5):
+    embedding = model.encode(query_text).tolist()
+
+    results = collection.query(
+        query_embeddings=[embedding],
+        n_results=3
+    )
+
+    filtered_results = []
+    print("Raw Query Results:")
+    print(results)
+    for doc, distance in zip(results["documents"][0], results["distances"][0]):
+        if distance-1 < threshold:
+            filtered_results.append({
+                "document": doc,
+                "distance": distance
+            })
+    print(f"Filtered {len(filtered_results)} results with distance < {threshold}")
+    return filtered_results
 
 if __name__ == "__main__":
     collection = build_vector_store()
 
     # results = query_similar(collection, "EUR payment above 5000")
-    results = query_similar(collection, "Payment from OMEGA LTD for 5400.75 GBP")
-    print("Query: Payment from OMEGA LTD for 5400.75 GBP")
+    results = query_similar(collection, "Payment from OMEGA LTD for GBP 5400")
+    # print("Query: Payment from OMEGA LTD for 5400 GBP")
     print("Query Results:")
-    print(results)
+    # print(results)
+    print(f"Found {len(results)} similar documents:")
+    for res in results:
+        print(f"Distance: {res['distance']:.4f} | Document: {res['document']}")
