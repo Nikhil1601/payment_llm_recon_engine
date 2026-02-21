@@ -23,7 +23,7 @@ def search(query: str):
     results = query_similar(collection, query)
     return {"results": results}
 
-# hybrid retival logic without llm
+# hybrid retival logic without llm -: regex based parsing and matching with mt messages
 @app.get("/smart_search")
 def smart_search_route(query: str):
     results = smart_search("data/mt_msg.txt", query)
