@@ -1,0 +1,11 @@
+fastapi==0.110.0
+uvicorn==0.29.0
+
+sentence-transformers==2.6.1
+chromadb==0.4.24
+
+pandas==2.2.1
+numpy==1.26.4
+
+python-dotenv==1.0.1
+requests==2.31.0
