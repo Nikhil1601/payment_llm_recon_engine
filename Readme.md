@@ -131,7 +131,7 @@ git clone https://github.com/Nikhil1601/payment_llm_recon_engine/tree/main
 python -m venv venv
 venv\Scripts\activate
 
-pip install -r requirements.txt
+pip install -r requirement.txt
 
 Run API:
 
