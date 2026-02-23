@@ -3,7 +3,7 @@ from api.dependencies import initialize_vector_store, get_collection
 from embeddings.embed_store import query_similar
 from search.smart_search import smart_search
 from search.smart_search_with_comparison import smart_search_from_struct
-# from reconciliation.reconcile import reconcile_payments
+from recon.recon_engine import reconcile
 
 app = FastAPI(title="Payment LLM Reconciliation Engine")
 
@@ -35,15 +35,10 @@ def smart_search_comparison_route(query: str):
     results = smart_search_from_struct("data/mt_msg.txt", query)
     return {"results": results}
 
-
-# @app.get("/reconcile")
-# def reconcile():
-#     matches, mismatches = reconcile_payments(
-#         "data/mt_messages.txt",
-#         "data/ledger.csv"
-#     )
-
-#     return {
-#         "matched_transactions": matches,
-#         "unmatched_transactions": mismatches
-#     }
+@app.get("/reconcile")
+def reconcile_endpoint():
+    results = reconcile(
+        "data/mt_msg.txt",
+        "data/transactions.csv"
+    )
+    return {"reconciliation_results": results}
