@@ -15,22 +15,41 @@ def reconcile(mt_file, ledger_file):
         amount = float(payment["amount"])
         currency = payment["currency"]
 
-        # Match using Swift_Ref
         ledger_match = ledger[ledger["Swift_Ref"] == tx_id]
 
+    
+    # CASE 1: Reference NOT found
+    
         if ledger_match.empty:
+
+            potential_matches = ledger[
+            (ledger["Currency"] == currency) &
+            (abs(ledger["Amount"] - amount) <= TOLERANCE)
+            ]
+
+            if not potential_matches.empty:
+                results.append({
+                    "transaction_id": tx_id,
+                    "status": "PARTIAL_MATCH",
+                    "reason": "Reference missing but matched on currency and amount tolerance"
+                })
+        else:
             results.append({
                 "transaction_id": tx_id,
                 "status": "MISMATCH",
-                "reason": "Swift reference not found in core ledger"
+                "reason": "No matching reference or financial attributes found"
             })
-            continue
 
+            continue  # IMPORTANT
+
+    
+    # CASE 2: Reference found
+    
         ledger_row = ledger_match.iloc[0]
         ledger_amount = float(ledger_row["Amount"])
         ledger_currency = ledger_row["Currency"]
 
-        # Layer 1: Exact match
+    # Exact match
         if amount == ledger_amount and currency == ledger_currency:
             results.append({
                 "transaction_id": tx_id,
@@ -39,7 +58,7 @@ def reconcile(mt_file, ledger_file):
             })
             continue
 
-        # Layer 2: Soft match
+    # Soft match
         if currency == ledger_currency and abs(amount - ledger_amount) <= TOLERANCE:
             results.append({
                 "transaction_id": tx_id,
@@ -48,7 +67,7 @@ def reconcile(mt_file, ledger_file):
             })
             continue
 
-        # Layer 3: Hard mismatch
+    # Hard mismatch
         if currency != ledger_currency:
             results.append({
                 "transaction_id": tx_id,
