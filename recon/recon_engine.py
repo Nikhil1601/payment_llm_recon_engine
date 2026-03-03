@@ -80,5 +80,6 @@ def reconcile(mt_file, ledger_file):
                 "status": "MISMATCH",
                 "reason": "Amount mismatch beyond tolerance"
             })
-
+    print("SWIFT TX:", repr(tx_id))
+    print("LEDGER REFS:", ledger["Swift_Ref"].tolist())
     return results
