@@ -18,8 +18,11 @@ def reconcile(mt_file, ledger_file):
         ledger_match = ledger[ledger["Swift_Ref"] == tx_id]
 
     
-    # CASE 1: Reference NOT found
-    
+    # CASE 1: Reference NOT founds
+        # print("----")
+        # print("TX:", tx_id)
+        # print("MT Amount:", amount, "MT Currency:", currency)
+        # print("Ledger Amount:", ledger["Amount"], "Ledger Currency:", ledger["Currency"])
         if ledger_match.empty:
 
             potential_matches = ledger[
@@ -33,12 +36,12 @@ def reconcile(mt_file, ledger_file):
                     "status": "PARTIAL_MATCH",
                     "reason": "Reference missing but matched on currency and amount tolerance"
                 })
-        else:
-            results.append({
-                "transaction_id": tx_id,
-                "status": "MISMATCH",
-                "reason": "No matching reference or financial attributes found"
-            })
+            else:
+                results.append({
+                    "transaction_id": tx_id,
+                    "status": "MISMATCH",
+                    "reason": "No matching reference or financial attributes found"
+                })
 
             continue  # IMPORTANT
 
@@ -50,6 +53,10 @@ def reconcile(mt_file, ledger_file):
         ledger_currency = ledger_row["Currency"]
 
     # Exact match
+        # print("----")
+        # print("TX:", tx_id)
+        # print("MT Amount:", amount, "MT Currency:", currency)
+        # print("Ledger Amount:", ledger_amount, "Ledger Currency:", ledger_currency)
         if amount == ledger_amount and currency == ledger_currency:
             results.append({
                 "transaction_id": tx_id,
