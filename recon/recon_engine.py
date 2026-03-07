@@ -7,7 +7,7 @@ TOLERANCE = 5.0
 def reconcile(mt_file, ledger_file):
     payments = load_and_parse(mt_file)
     ledger = pd.read_csv(ledger_file)
-
+    
     results = []
 
     for payment in payments:
