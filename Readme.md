@@ -26,9 +26,13 @@ Custom Block {4:} Parser
       ↓
 Structured Normalization
       ↓
-Hybrid Query Engine
+Reconciliation Engine
+      ↓
+Exact / Partial / Mismatch
       ↓
 FastAPI Backend
+
+
 🧠 Architecture
 1️⃣ MT103 Parsing Layer
 
@@ -95,6 +99,8 @@ Endpoint	        Description
 /search	            Semantic vector search
 /smart-search	    Hybrid structured query engine
 /reconcile	(WIP)   Ledger reconciliation
+/recon-summary      recon-summary
+
 🛠 Tech Stack
 
 Python
