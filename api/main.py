@@ -4,6 +4,7 @@ from embeddings.embed_store import query_similar
 from search.smart_search import smart_search
 from search.smart_search_with_comparison import smart_search_from_struct
 from recon.recon_engine import reconcile
+from recon.recon_engine import reconciliation_summary
 
 app = FastAPI(title="Payment LLM Reconciliation Engine")
 
@@ -42,3 +43,11 @@ def reconcile_endpoint():
         "data/transactions.csv"
     )
     return {"reconciliation_results": results}
+
+@app.get("/reconciliation-summary")
+def recon_summary():
+    results = reconcile(
+        "data/mt_msg.txt",
+        "data/transactions.csv"
+    )
+    return reconciliation_summary(results)

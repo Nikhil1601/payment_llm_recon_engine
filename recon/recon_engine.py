@@ -90,3 +90,21 @@ def reconcile(mt_file, ledger_file):
     print("SWIFT TX:", repr(tx_id))
     print("LEDGER REFS:", ledger["Swift_Ref"].tolist())
     return results
+def reconciliation_summary(results):
+
+    summary = {
+        "total_transactions": len(results),
+        "exact_match": 0,
+        "partial_match": 0,
+        "mismatch": 0
+    }
+
+    for r in results:
+        if r["status"] == "EXACT_MATCH":
+            summary["exact_match"] += 1
+        elif r["status"] == "PARTIAL_MATCH":
+            summary["partial_match"] += 1
+        else:
+            summary["mismatch"] += 1
+
+    return summary
