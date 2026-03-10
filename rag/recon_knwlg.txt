@@ -1,0 +1,14 @@
+Exact Match:
+Occurs when the SWIFT transaction reference, currency, and amount match exactly with the core banking ledger entry.
+
+Partial Match:
+Occurs when the SWIFT reference is missing or different but financial attributes such as currency and amount fall within the defined tolerance threshold.
+
+Mismatch:
+Occurs when either the currency differs or the amount difference exceeds the defined tolerance. This indicates reconciliation failure requiring manual investigation.
+
+Tolerance Matching:
+Financial systems often allow small differences in amount due to fees, rounding differences, or processing delays.
+
+Reference Missing Cases:
+Sometimes ledger posting occurs before reference synchronization, resulting in temporary reference mismatches.
