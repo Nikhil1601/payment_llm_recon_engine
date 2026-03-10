@@ -11,8 +11,7 @@ python-dotenv==1.0.1
 requests==2.31.0
 
 
-langchain
-langchain-community
-chromadb
-sentence-transformers
-openai
+langchain_chroma
+langchain_huggingface
+langchain_text_splitters
+langchain_community
