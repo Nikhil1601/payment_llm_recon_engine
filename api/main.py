@@ -5,6 +5,7 @@ from search.smart_search import smart_search
 from search.smart_search_with_comparison import smart_search_from_struct
 from recon.recon_engine import reconcile
 from recon.recon_engine import reconciliation_summary
+from llm.explainer import generate_explanation
 
 app = FastAPI(title="Payment LLM Reconciliation Engine")
 
@@ -51,3 +52,16 @@ def recon_summary():
         "data/transactions.csv"
     )
     return reconciliation_summary(results)
+
+@app.get("/reconcile-with-explanation")
+def reconcile_with_llm():
+
+    results = reconcile(
+        "data/mt_messages.txt",
+        "data/recon_file.csv"
+    )
+
+    for r in results:
+        r["llm_explanation"] = generate_explanation(r)
+
+    return results

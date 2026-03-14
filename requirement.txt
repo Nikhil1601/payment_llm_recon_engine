@@ -10,7 +10,7 @@ numpy==1.26.4
 python-dotenv==1.0.1
 requests==2.31.0
 
-
+openai
 langchain_chroma
 langchain_huggingface
 langchain_text_splitters
