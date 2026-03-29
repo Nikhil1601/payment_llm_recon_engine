@@ -1,7 +1,7 @@
 from langchain_community.llms import Ollama
 from rag.retriever import get_relevant_context
 
-llm = Ollama(model="llama3")
+llm = Ollama(model="llama3", temperature=0.7)
 
 def generate_explanation(transaction):
 

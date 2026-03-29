@@ -57,8 +57,8 @@ def recon_summary():
 def reconcile_with_llm():
 
     results = reconcile(
-        "data/mt_messages.txt",
-        "data/recon_file.csv"
+        "data/mt_msg.txt",
+        "data/transactions.csv"
     )
 
     for r in results:
