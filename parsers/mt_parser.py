@@ -1,6 +1,5 @@
 import re
 
-
 def extract_block4_messages(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
         content = f.read()

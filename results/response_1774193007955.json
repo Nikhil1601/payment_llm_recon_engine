@@ -1,0 +1,59 @@
+{
+  "reconciliation_results": [
+    {
+      "transaction_id": "GS0DUGH121TSDG0",
+      "status": "PARTIAL_MATCH",
+      "reason": "Amount differs within tolerance (5.0)"
+    },
+    {
+      "transaction_id": "GS0DUGH121TSDG1",
+      "status": "MISMATCH",
+      "reason": "Currency mismatch between SWIFT and core"
+    },
+    {
+      "transaction_id": "GS0DUGH121TSDG2",
+      "status": "EXACT_MATCH",
+      "reason": "Exact match between SWIFT and core"
+    },
+    {
+      "transaction_id": "GS0DUGH121TSDG3",
+      "status": "EXACT_MATCH",
+      "reason": "Exact match between SWIFT and core"
+    },
+    {
+      "transaction_id": "GS0DUGH121TSDG4",
+      "status": "EXACT_MATCH",
+      "reason": "Exact match between SWIFT and core"
+    },
+    {
+      "transaction_id": "GS0DUGH121TSDG5",
+      "status": "EXACT_MATCH",
+      "reason": "Exact match between SWIFT and core"
+    },
+    {
+      "transaction_id": "GS0DUGH121TSDG6",
+      "status": "EXACT_MATCH",
+      "reason": "Exact match between SWIFT and core"
+    },
+    {
+      "transaction_id": "GS0DUGH121TSDG7",
+      "status": "EXACT_MATCH",
+      "reason": "Exact match between SWIFT and core"
+    },
+    {
+      "transaction_id": "GS0DUGH121TSDG8",
+      "status": "EXACT_MATCH",
+      "reason": "Exact match between SWIFT and core"
+    },
+    {
+      "transaction_id": "GS0DUGH121TSDG9",
+      "status": "EXACT_MATCH",
+      "reason": "Exact match between SWIFT and core"
+    },
+    {
+      "transaction_id": "GS0DUGH121TSDG10",
+      "status": "EXACT_MATCH",
+      "reason": "Exact match between SWIFT and core"
+    }
+  ]
+}

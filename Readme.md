@@ -3,7 +3,7 @@ Payment LLM Reconciliation Engine
 A hybrid LLM-powered financial intelligence system for parsing, querying, and reconciling SWIFT MT103 payment messages.
 
 This project explores how LLM systems should be designed for financial workflows — combining deterministic logic with semantic retrieval instead of relying purely on embeddings.
-
+-----------------------------------------------------------------------------------------------------------------------
 🚀 Overview
 
 Financial systems require:
@@ -17,22 +17,47 @@ Deterministic validation
 Explainability
 
 Pure vector similarity is insufficient for these constraints.
+--------------------------------------------------------------------------------------------------------------------
+
+🚀 Features
+🔍 MT103 Parsing — Extracts transaction data from SWIFT messages
+⚖️ Reconciliation Engine
+Exact Match
+Partial Match (tolerance-based)
+Mismatch detection
+📊 Reconciliation Summary API
+🔎 Semantic Search — Query transactions using natural language
+🧠 RAG Pipeline
+Vector database (ChromaDB)
+Embeddings (Sentence Transformers)
+Local LLM (Ollama - Llama3)
+⚡ FastAPI Backend
+
+---------------------------------------------------------------------------------------------------------------------
+🏗️ Architecture
 
 This project implements a hybrid retrieval architecture:
 
-MT103 Messages
-      ↓
-Custom Block {4:} Parser
-      ↓
-Structured Normalization
-      ↓
+MT103 File
+   ↓
+Parser (MT Parser)
+   ↓
+Structured Transactions
+   ↓
 Reconciliation Engine
-      ↓
+   ↓
 Exact / Partial / Mismatch
-      ↓
-FastAPI Backend
+   ↓
+Vector DB (Chroma)
+   ↓
+Retriever
+   ↓
+Local LLM (Ollama)
+   ↓
+Explanation API
+      
 
-
+-----------------------------------------------------------------------------------------------------------------------
 🧠 Architecture
 1️⃣ MT103 Parsing Layer
 
@@ -56,6 +81,8 @@ Comma-based decimal amounts
 
 Real-world message formatting
 
+-----------------------------------------------------------------------------------------------------------------------
+
 2️⃣ Embedding Layer
 
 Model: all-MiniLM-L6-v2
@@ -65,6 +92,8 @@ Vector DB: Chroma
 Converts structured transactions into semantic representations
 
 Enables similarity-based retrieval
+
+---------------------------------------------------------------------------------------------------------------------
 
 3️⃣ Hybrid Query Engine
 
@@ -88,18 +117,23 @@ Apply rule-based filtering
 
 Return exact matched transaction
 
+---------------------------------------------------------------------------------------------------------------------------
+
 4️⃣ API Layer
 
 Built using FastAPI.
 
 Endpoints:
 
-Endpoint	        Description
-/health	            Service status
-/search	            Semantic vector search
-/smart-search	    Hybrid structured query engine
-/reconcile	(WIP)   Ledger reconciliation
-/recon-summary      recon-summary
+Endpoint	                        Description
+/health	                        Service status
+/search	                        Semantic vector search
+/smart-search	                  Hybrid structured query engine
+/reconcile	(WIP)                   Ledger reconciliation
+/reconciliation-summary             recon-summary
+/reconciliation-summary            recon-summary-with-llm
+
+----------------------------------------------------------------------------------------------------------------------------
 
 🛠 Tech Stack
 
@@ -114,6 +148,8 @@ ChromaDB
 Pandas
 
 Custom MT103 parser
+
+---------------------------------------------------------------------------------------------------------------------
 
 🔎 Why Hybrid Retrieval?
 
@@ -131,6 +167,8 @@ Hybrid Retrieval = Deterministic Filtering + AI Assistance
 
 This mirrors real-world fintech AI system design.
 
+----------------------------------------------------------------------------------------------------------------------
+
 📦 Installation
 git clone https://github.com/Nikhil1601/payment_llm_recon_engine/tree/main
 
@@ -147,17 +185,7 @@ Visit:
 
 http://127.0.0.1:8000/docs
 
-📈 Roadmap
-
-LLM-based natural language query parsing
-
-Intelligent reconciliation engine
-
-Mismatch explanation generation
-
-Cloud deployment
-
-Observability & logging layer
+-----------------------------------------------------------------------------------------------------------------------
 
 🎯 Motivation
 
@@ -173,12 +201,6 @@ AI-assisted where useful
 
 Production-oriented
 
-📬 Contact
+-------------------------------------------------------------------------------------------------------------------
 
-Open to discussions on:
 
-Fintech AI
-
-Hybrid retrieval architectures
-
-LLM system design
